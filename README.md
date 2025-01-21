@@ -1,32 +1,33 @@
 ## Currency Convert API
 
-This is a simple currency converter api written using Spring Boot. The api lets users to 
+This is a simple currency converter api written using Spring Boot. The api lets users to
 
 - fetch exchange rates between two currencies
-- convert the given amount from one currency to the other based on the exchange rate 
+- convert the given amount from one currency to the other based on the exchange rate
 
 #### API Endpoints
 
 ##### Get Exchange Rate
 
-**Endpoint:**  /api/rate
+**Endpoint:** /api/rate
 
 **Method:** GET
 
 **Description:** Fetches the exchange rate between two currencies
 
 **Query Params**
-- ``from``: The source currency code (eg: USD)
-- ``to``: The target currency code (eg: INR)
+
+- `from`: The source currency code (eg: USD)
+- `to`: The target currency code (eg: INR)
 
 **Responses**
-- ``200 ok``: Returns the exchange rate as a double
-- ``400 Bad Request``: Invalid input parameters 
+
+- `200 ok`: Returns the exchange rate as a double
+- `400 Bad Request`: Invalid input parameters
 
 #### Convert Currency
 
 **Endpoint:** /api/convert
-
 
 **Method:** POST
 
@@ -43,6 +44,7 @@ This is a simple currency converter api written using Spring Boot. The api lets 
 ```
 
 **Response**
+
 ```
 {
     "fromCurrency": "USD",
@@ -54,16 +56,16 @@ This is a simple currency converter api written using Spring Boot. The api lets 
 
 **Status Codes**
 
-``200 OK``: Successful conversion
+`200 OK`: Successful conversion
 
-``400 Bad Request``: Invalid input parameters
-
+`400 Bad Request`: Invalid input parameters
 
 #### Run locally
 
 ##### Prerequisites
-- Java Development Kit 
-- Maven 
+
+- Java Development Kit
+- Maven
 - Open Exchange Rates API app id
 
 ##### Steps
@@ -71,14 +73,14 @@ This is a simple currency converter api written using Spring Boot. The api lets 
 1. Clone the repository
 
 ```
-    git clone git@github.com:aswinr19/currency-converter-api.git
-    cd currency-converter-api 
+    git clone  https://github.com/eldho1998/Currencyrepo
+    cd currency-converter-api
 ```
 
 2. Set up environment variables
 
-``EXCHANGE_API_URL`` environment variables in your system.
- (or hard code it into src/main/java/com/example/currencyconverter/utils/ExternalApiClient.java line 15)
+`EXCHANGE_API_URL` environment variables in your system.
+(or hard code it into src/main/java/com/example/currencyconverter/utils/ExternalApiClient.java line 15)
 
 3. Build the project
 
@@ -94,10 +96,10 @@ This is a simple currency converter api written using Spring Boot. The api lets 
 
 5. Access the api: The application will start on http://localhost:8080 by default.
 
-
 ##### Run the tests using Maven
 
 ```
     mvn test
 ```
+
 =======
