@@ -45,7 +45,6 @@ public class CurrencyController {
     private String sanitizeCurrencyCode(String currencyCode) {
       if ( currencyCode == null ) 
         throw new IllegalArgumentException("currency code cannot be null!");
-     
       
     return currencyCode.trim().toUpperCase();
     }
