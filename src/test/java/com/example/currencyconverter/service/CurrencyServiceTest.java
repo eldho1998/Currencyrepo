@@ -13,47 +13,45 @@ import static org.mockito.Mockito.when;
 import com.example.currencyconverter.utils.ExternalApiClient;
 
 class CurrencyServiceTest {
-    private CurrencyService currencyService;
-    private ExternalApiClient mockApiClient;
+	private CurrencyService currencyService;
+	private ExternalApiClient mockApiClient;
 
-    @BeforeEach
-    void setUp() {
-        mockApiClient = Mockito.mock(ExternalApiClient.class);
-        currencyService = new CurrencyService(mockApiClient);
-    }
+	@BeforeEach
+	void setUp() {
+		mockApiClient = Mockito.mock(ExternalApiClient.class);
+		currencyService = new CurrencyService(mockApiClient);
+	}
 
-    @Test
-    void testGetExchangeRateValidCurrencies() {
-        when(mockApiClient.fetchExchangeRate("USD", "INR")).thenReturn(85.835084);
+	@Test
+	void testGetExchangeRateValidCurrencies() {
+		when(mockApiClient.fetchExchangeRate("USD", "INR")).thenReturn(85.835084);
 
-        double rate = currencyService.getExchangeRate("USD", "INR");
-        assertEquals(85.835084, rate, 0.01);
-        verify(mockApiClient, times(1)).fetchExchangeRate("USD", "INR");
-    }
+		double rate = currencyService.getExchangeRate("USD", "INR");
+		assertEquals(85.835084, rate, 0.01);
+		verify(mockApiClient, times(1)).fetchExchangeRate("USD", "INR");
+	}
 
-    @Test
-    void testGetExchangeRateInvalidCurrency() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            currencyService.getExchangeRate("INVALID", "INR");
-        });
+	@Test
+	void testGetExchangeRateInvalidCurrency() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+			currencyService.getExchangeRate("INVALID", "INR");
+		});
 
-        assertTrue(exception.getMessage().contains("invalid currency code!"));
-    }
+		assertTrue(exception.getMessage().contains("invalid currency code!"));
+	}
 
-    @Test
-    void testConvertCurrency() {
-        double result = currencyService.convertCurrency(100, 85.835084);
-        assertEquals(8583.5084, result, 0.01);
-    }
+	@Test
+	void testConvertCurrency() {
+		double result = currencyService.convertCurrency(100, 85.835084);
+		assertEquals(8583.5084, result, 0.01);
+	}
 
-    @Test
-    void testConvertCurrencyNegativeAmount() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            currencyService.convertCurrency(-100, 85.835084);
-        });
+	@Test
+	void testConvertCurrencyNegativeAmount() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+			currencyService.convertCurrency(-100, 85.835084);
+		});
 
-        assertTrue(exception.getMessage().contains("enter a valid amount!"));
-    }
+		assertTrue(exception.getMessage().contains("enter a valid amount!"));
+	}
 }
-
-

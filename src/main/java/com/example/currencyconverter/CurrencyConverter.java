@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 
-
 public class CurrencyConverter {
 
 	@RequestMapping("/")
