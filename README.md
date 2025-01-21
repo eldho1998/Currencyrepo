@@ -1,105 +1,96 @@
-## Currency Convert API
+## Currency Conversion API
 
-This is a simple currency converter api written using Spring Boot. The api lets users to
+A straightforward API built using Spring Boot for converting currencies. It allows users to:
 
-- fetch exchange rates between two currencies
-- convert the given amount from one currency to the other based on the exchange rate
+### Retrieve exchange rates between different currencies.
 
-#### API Endpoints
+### Convert a specified amount from one currency to another using the exchange rate.
 
-##### Get Exchange Rate
+- Available Endpoints
 
-**Endpoint:** /api/rate
+1. Get Exchange Rate
+2. URL: /api/rate
+   Method: GET
 
-**Method:** GET
+Query Parameters:
 
-**Description:** Fetches the exchange rate between two currencies
+from: The base currency code (e.g., USD).
+to: The target currency code (e.g., INR).
 
-**Query Params**
+- Responses:
 
-- `from`: The source currency code (eg: USD)
-- `to`: The target currency code (eg: INR)
+200 OK: Returns the exchange rate as a double.
+400 Bad Request: When invalid parameters are provided.
+Currency Conversion
+URL: /api/convert
+Method: POST
 
-**Responses**
+- Request Body:
 
-- `200 ok`: Returns the exchange rate as a double
-- `400 Bad Request`: Invalid input parameters
-
-#### Convert Currency
-
-**Endpoint:** /api/convert
-
-**Method:** POST
-
-**Description:** Converts an amount from one currency to another using the fetched exchange rate
-
-**Request Body**
-
-```
+json
+Copy
+Edit
 {
-    "fromCurrency": "USD",
-    "toCurrency": "INR",
-    "amount": 100
+"fromCurrency": "USD",
+"toCurrency": "INR",
+"amount": 100
 }
-```
 
-**Response**
+- Response:
 
-```
+json
+Copy
+Edit
 {
-    "fromCurrency": "USD",
-    "toCurrency": "INR",
-    "amount": 100,
-    "convertedAmount": 8579.679
+"fromCurrency": "USD",
+"toCurrency": "INR",
+"amount": 100,
+"convertedAmount": 8579.679
 }
-```
 
-**Status Codes**
+- Response Status:
 
-`200 OK`: Successful conversion
+200 OK: Successfully converted.
+400 Bad Request: When input parameters are incorrect.
+Setting Up Locally
 
-`400 Bad Request`: Invalid input parameters
+## Requirements
 
-#### Run locally
+### JDK (Java Development Kit)
 
-##### Prerequisites
+### Maven (for building)
 
-- Java Development Kit
-- Maven
-- Open Exchange Rates API app id
+### Open Exchange Rates API app ID
 
-##### Steps
+Steps
+Clone the repository:
+bash
+Copy
+Edit
 
-1. Clone the repository
+### git clone https://github.com/eldho1998/CurrencyConverterRepo.git
 
-```
-    git clone  https://github.com/eldho1998/Currencyrepo
-    cd currency-converter-api
-```
+cd currency-converter-api
+Configure environment variables:
 
-2. Set up environment variables
+- Set the EXCHANGE_API_URL environment variable, or alternatively, define it directly in ExternalApiClient.java (line 15).
 
-`EXCHANGE_API_URL` environment variables in your system.
-(or hard code it into src/main/java/com/example/currencyconverter/utils/ExternalApiClient.java line 15)
+Build the project:
 
-3. Build the project
+bash
+Copy
+Edit
+mvn clean install
+Start the application:
+bash
+Copy
+Edit
+mvn spring-boot:run
+The API will be available at http://localhost:8080.
 
-```
-    mvn clean install
-```
+### Running Unit Tests
 
-4. Run the application
-
-```
-    mvn spring-boot:run
-```
-
-5. Access the api: The application will start on http://localhost:8080 by default.
-
-##### Run the tests using Maven
-
-```
-    mvn test
-```
-
-=======
+bash
+Copy
+Edit
+mvn test
