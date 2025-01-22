@@ -13,13 +13,13 @@ import static org.mockito.Mockito.when;
 import com.example.currencyconverter.utils.ExternalApiClient;
 
 class CurrencyServiceTest {
-	private CurrencyService currencyService;
+	private CurrencyServiceImpl currencyService;
 	private ExternalApiClient mockApiClient;
 
 	@BeforeEach
 	void setUp() {
 		mockApiClient = Mockito.mock(ExternalApiClient.class);
-		currencyService = new CurrencyService(mockApiClient);
+		currencyService = new CurrencyServiceImpl(mockApiClient);
 	}
 
 	@Test

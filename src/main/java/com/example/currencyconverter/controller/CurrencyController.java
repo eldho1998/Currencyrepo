@@ -10,43 +10,38 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.currencyconverter.model.CurrencyRequest;
 import com.example.currencyconverter.model.CurrencyResponse;
 import com.example.currencyconverter.service.CurrencyService;
+import com.example.currencyconverter.service.CurrencyServiceImpl;
 
 @RestController
 @RequestMapping("/api")
 public class CurrencyController {
-    private final CurrencyService currencyService;
+	private final CurrencyService currencyService;
 
-    public CurrencyController(CurrencyService currencyService) {
-        this.currencyService = currencyService;
-    }
+	public CurrencyController(CurrencyService currencyService) {
+		this.currencyService = currencyService;
+	}
 
-    @GetMapping("/rate")
-    public double getExchangeRate(@RequestParam String from, @RequestParam String to) {
-        return currencyService.getExchangeRate(sanitizeCurrencyCode(from), sanitizeCurrencyCode(to));
-    }
+	@GetMapping("/rate")
+	public double getExchangeRate(@RequestParam String from, @RequestParam String to) {
+		return currencyService.getExchangeRate(sanitizeCurrencyCode(from), sanitizeCurrencyCode(to));
+	}
 
-    @PostMapping("/convert")
-    public CurrencyResponse convertCurrency(@RequestBody CurrencyRequest request) {
+	@PostMapping("/convert")
+	public CurrencyResponse convertCurrency(@RequestBody CurrencyRequest request) {
+		String fromCurrency = sanitizeCurrencyCode(request.getFromCurrency());
+		String toCurrency = sanitizeCurrencyCode(request.getToCurrency());
 
-        String fromCurrency = sanitizeCurrencyCode(request.getFromCurrency());
-        String toCurrency = sanitizeCurrencyCode(request.getToCurrency());
+		double exchangeRate = currencyService.getExchangeRate(fromCurrency, toCurrency);
+		double convertedAmount = currencyService.convertCurrency(request.getAmount(), exchangeRate);
 
-        double exchangeRate = currencyService.getExchangeRate(fromCurrency, toCurrency);
-        double convertedAmount = currencyService.convertCurrency(request.getAmount(), exchangeRate);
+		return new CurrencyResponse(request.getFromCurrency(), request.getToCurrency(), request.getAmount(),
+				convertedAmount);
+	}
 
-        return new CurrencyResponse(
-                request.getFromCurrency(),
-                request.getToCurrency(),
-                request.getAmount(),
-                convertedAmount
-        );
-    }
+	private String sanitizeCurrencyCode(String currencyCode) {
+		if (currencyCode == null)
+			throw new IllegalArgumentException("currency code cannot be null!");
 
-    private String sanitizeCurrencyCode(String currencyCode) {
-      if ( currencyCode == null ) 
-        throw new IllegalArgumentException("currency code cannot be null!");
-      
-    return currencyCode.trim().toUpperCase();
-    }
+		return currencyCode.trim().toUpperCase();
+	}
 }
-

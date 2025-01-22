@@ -11,15 +11,15 @@ import static org.mockito.Mockito.when;
 
 import com.example.currencyconverter.model.CurrencyRequest;
 import com.example.currencyconverter.model.CurrencyResponse;
-import com.example.currencyconverter.service.CurrencyService;
+import com.example.currencyconverter.service.CurrencyServiceImpl;
 
 class CurrencyControllerTest {
 	private CurrencyController currencyController;
-	private CurrencyService mockCurrencyService;
+	private CurrencyServiceImpl mockCurrencyService;
 
 	@BeforeEach
 	void setUp() {
-		mockCurrencyService = mock(CurrencyService.class);
+		mockCurrencyService = mock(CurrencyServiceImpl.class);
 		currencyController = new CurrencyController(mockCurrencyService);
 	}
 
