@@ -10,15 +10,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.example.currencyconverter.utils.ExternalApiClient;
+import com.example.currencyconverter.utils.ExternalApi;
 
 class CurrencyServiceTest {
 	private CurrencyServiceImpl currencyService;
-	private ExternalApiClient mockApiClient;
+	private ExternalApi mockApiClient;
 
 	@BeforeEach
 	void setUp() {
-		mockApiClient = Mockito.mock(ExternalApiClient.class);
+		mockApiClient = Mockito.mock(ExternalApi.class);
 		currencyService = new CurrencyServiceImpl(mockApiClient);
 	}
 

@@ -4,14 +4,14 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import com.example.currencyconverter.utils.ExternalApiClient;
+import com.example.currencyconverter.utils.ExternalApi;
 
 @Service
 public class CurrencyServiceImpl implements CurrencyService {
 
-	private final ExternalApiClient apiClient;
+	private final ExternalApi apiClient;
 
-	public CurrencyServiceImpl(ExternalApiClient apiClient) {
+	public CurrencyServiceImpl(ExternalApi apiClient) {
 		this.apiClient = apiClient;
 	}
 

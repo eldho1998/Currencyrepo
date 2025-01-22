@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class ExternalApiClient {
+public class ExternalApi {
 
 	private final RestTemplate restTemplate = new RestTemplate();
 
