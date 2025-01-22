@@ -14,13 +14,13 @@ import com.example.currencyconverter.model.CurrencyResponse;
 import com.example.currencyconverter.service.CurrencyServiceImpl;
 
 class CurrencyControllerTest {
-	private CurrencyController currencyController;
+	private CurrencyConverterController currencyController;
 	private CurrencyServiceImpl mockCurrencyService;
 
 	@BeforeEach
 	void setUp() {
 		mockCurrencyService = mock(CurrencyServiceImpl.class);
-		currencyController = new CurrencyController(mockCurrencyService);
+		currencyController = new CurrencyConverterController(mockCurrencyService);
 	}
 
 	@Test

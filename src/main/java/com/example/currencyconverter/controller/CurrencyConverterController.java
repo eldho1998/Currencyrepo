@@ -14,10 +14,10 @@ import com.example.currencyconverter.service.CurrencyServiceImpl;
 
 @RestController
 @RequestMapping("/api")
-public class CurrencyController {
+public class CurrencyConverterController {
 	private final CurrencyService currencyService;
 
-	public CurrencyController(CurrencyService currencyService) {
+	public CurrencyConverterController(CurrencyService currencyService) {
 		this.currencyService = currencyService;
 	}
 
